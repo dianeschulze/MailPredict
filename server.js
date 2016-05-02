@@ -6,6 +6,7 @@ var engines = require('consolidate');
 var express = require('express'),
     app = express();
 var bodyParser = require('body-parser');
+app.use(bodyParser.urlencoded({extended: false}));
 app.use(bodyParser.json())
 var path = require('path');
 
@@ -31,6 +32,7 @@ app.post('/email', function(req, res){
     // var body = req.body.BodyPlain
     // var time = req.body.ReceivedAt
     // console.log(sender, subject, body, time)
+    res.send("thanks")
     res.end()
 });
 
