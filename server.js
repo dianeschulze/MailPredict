@@ -6,7 +6,7 @@ var engines = require('consolidate');
 var express = require('express'),
     app = express();
 var bodyParser = require('body-parser');
-app.use(bodyParser.urlencoded({extended: false}));
+//app.use(bodyParser.urlencoded({extended: false}));
 app.use(bodyParser.json())
 var path = require('path');
 
