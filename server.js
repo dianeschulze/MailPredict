@@ -26,7 +26,7 @@ app.get('/helloworld', function(req, res) {
 app.post('/email', function(req, res){
     console.log('got email')
     if (req.body){
-        console.log(req.body)
+        console.log(req.body.keys())
 
 }
     // var sender = req.body.FromAddress
