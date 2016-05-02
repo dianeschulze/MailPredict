@@ -18,6 +18,7 @@ app.get('/', function(req, res) {
 
 app.get('/helloworld', function(req, res) {
     console.log('got hello world request');
+    res.send('hello world')
     res.end();
 });
 
