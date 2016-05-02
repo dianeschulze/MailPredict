@@ -15,5 +15,13 @@
     "consolidate": "^0.14.1"
   },
   "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/dianeschulze/MailPredict.git"
+  },
+  "bugs": {
+    "url": "https://github.com/dianeschulze/MailPredict/issues"
+  },
+  "homepage": "https://github.com/dianeschulze/MailPredict",
   "description": ""
 }
