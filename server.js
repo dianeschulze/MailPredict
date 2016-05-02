@@ -5,6 +5,7 @@ var request = require('request');
 var engines = require('consolidate');
 var express = require('express'),
     app = express();
+app.use(express.bodyParser())
 var path = require('path');
 
 
