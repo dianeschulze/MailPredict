@@ -23,6 +23,7 @@ app.get('/helloworld', function(req, res) {
 // on receipt of new email
 app.post('/email', function(req, res){
     console.log('got email')
+    console.log(req)
     console.log(req.body)
     console.log(req.body.keys())
     // var sender = req.body.FromAddress
