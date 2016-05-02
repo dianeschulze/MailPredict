@@ -11,7 +11,8 @@
   "dependencies": {
     "express": "^4.13.4",
     "request": "^2.72.0",
-    "consolidate": "^0.14.1"
+    "consolidate": "^0.14.1",
+    "body-parser": "^1.15.0"
   },
   "devDependencies": {},
   "repository": {
