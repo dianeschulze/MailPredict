@@ -28,7 +28,6 @@ app.post('/email', function(req, res){
     if (req.body){
         console.log(req.body)
 
-        console.log(req.body.keys())
 }
     // var sender = req.body.FromAddress
     // var subject = req.body.Subject
