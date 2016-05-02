@@ -25,9 +25,11 @@ app.get('/helloworld', function(req, res) {
 // on receipt of new email
 app.post('/email', function(req, res){
     console.log('got email')
-    if req.body:
+    if (req.body){
         console.log(req.body)
-    console.log(req.body.keys())
+
+        console.log(req.body.keys())
+}
     // var sender = req.body.FromAddress
     // var subject = req.body.Subject
     // var body = req.body.BodyPlain
