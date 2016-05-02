@@ -5,7 +5,6 @@ var request = require('request');
 var engines = require('consolidate');
 var express = require('express'),
     app = express();
-var session = require('express-session');
 var path = require('path');
 
 
