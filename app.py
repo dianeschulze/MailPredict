@@ -5,6 +5,7 @@ from flask import Flask, render_template, request, redirect, url_for
 from sklearn.externals import joblib
 import csv
 import simplejson as json
+import requests
 
 app = Flask(__name__)
 
@@ -73,7 +74,6 @@ def gotMail():
         return 200    
 
     else:
-        print "no from ifttt secret"
         return 400
 
 
