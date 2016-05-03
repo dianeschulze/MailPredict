@@ -43,3 +43,15 @@ Conclusions:
 * Elastic net tends to slightly outperform the other models, but not by much. It seems sufficient to just use multiple linear.
 * I get much lower variance and higher r^2 when I use data from just this school year vs for all my time at Brown (notably this also excluded any summers, when I use my Brown email way less)
 * Assuming I'm only using one school year of data, using the average response time is better than using the median or using both. 
+* The "brown sender" feature helps
+* The number of recipients feature helps
+* Minutes since midnight does not help (neither the naive or the adjusted-for-sleep version helps, but the adjusted version performs better)
+* A binary variable indicating whether I'm probably asleep at the time received does not help. 
+* 
+
+In the end, I have a multiple linear regression model with :
+training accuracy ~
+testing accuracy ~
+variance ~
+
+
