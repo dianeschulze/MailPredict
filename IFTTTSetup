@@ -1,0 +1,17 @@
+Here are the instructions for setting up the two IFTTT recipes you need
+
+***IF gmail THEN maker***
+Choose your trigger and action (IF gmail THEN maker). Connect gmail to the account you want to use.
+In the maker action settings, set the URL to the server URL. 
+I'm sending POST requests with form data because there's something wonky about the json. 
+The body should look like:
+secret=<from-ifttt-secret>&sender=<sender>%date=<date>&subject=<subject> where sender, date, and subject are fields that IFTTT makes available.
+Save the recipe. Now you should get requests at the URL you supplied when you get an email. 
+
+***IF maker THEN gmail***
+Choose your trigger and action (IF maker THEN gmail).
+Choose an event name. This will go in your base URL for sending requests. 
+Populate the email fields using value1, value2, and value3 (the values that you can send as json).
+Save the recipe.
+Grab your base url and key from ifttt.com/maker. 
+Send your value1, value2, and value3 as json to the base URL + your key to trigger the gmail action. 
