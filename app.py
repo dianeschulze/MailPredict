@@ -40,6 +40,7 @@ def gotMail():
     subject = request.form['subject']
  
     if secret == FROM_IFTTT_SECRET:
+        # ***** Filer responses here *******
         # obvious emails to not reply to
         #if not('morning_mail' in sender or 'no-reply' in sender or 'no-reply' in sender or 'unsubscribe' in body):
         
@@ -69,7 +70,6 @@ def gotMail():
             reply_url = IFTTT_BASE_URL+TO_IFTTT_KEY
             headers = {'Content-Type': 'application/json'}
             req = requests.post(reply_url, data=json.dumps(reply_data), headers=headers)
-            #req = requests.post(reply_url, data=json_str)
 
         return 200    
 
