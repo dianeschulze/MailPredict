@@ -39,7 +39,7 @@ def gotMail():
     date = request.form['date']
     subject = request.form['subject']
  
-    if secret == FROM_IFTTT_SECRET:
+    if secret == FROM_IFTTT_SECRET and 'auto-response' not in subject.lower(): # had to add this because I was getting infinite auto responses
         # ***** Filer responses here *******
         # obvious emails to not reply to
         #if not('morning_mail' in sender or 'no-reply' in sender or 'no-reply' in sender or 'unsubscribe' in body):
