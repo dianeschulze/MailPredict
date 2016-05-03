@@ -27,10 +27,11 @@ app.post('/email', function(req, res){
     console.log('got email')
     if (req.body){
         //console.log(req.body)
-        console.log (req.body)
+        console.log(req.body)
 
-        //extract features from the email 
-        
+        //extract features from the email. This is kinda messy because IFTTT's json sender is broken so I have to get it 
+        // as a form. 
+
 
 }
     // var sender = req.body.FromAddress
