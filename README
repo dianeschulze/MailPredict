@@ -3,7 +3,7 @@ This project is an email auto-responder that uses linear regression to predict h
 There are 3 major parts:
 1. getmail.py, which downloads, parses, and creates features from my historical email data. 
 2. classifier.py, which builds a linear regression model to predict my response time based on the features. It also builds binary classifiers to predict whether I will respond, but these don't work very well (they pretty much always predict that I will not respond) 
-3. s
+3. App.py, which receives new email, predicts the response time, and sends the auto-response.
 
 
 ***Downloading Mail***
@@ -47,11 +47,27 @@ Conclusions:
 * The number of recipients feature helps
 * Minutes since midnight does not help (neither the naive or the adjusted-for-sleep version helps, but the adjusted version performs better)
 * A binary variable indicating whether I'm probably asleep at the time received does not help. 
-* 
+
+Unfortunately, because of the way I implemented app.py, I had to remove the number of recipients feature because I couldn't get it from new emails. It's ok though because it wasn't _that_ helpful anyway.
 
 In the end, I have a multiple linear regression model with :
 training accuracy ~
 testing accuracy ~
 variance ~
+
+***Server***
+I am using a python server hosted on heroku to handle all of the new email interactions. Instead of Mailbot, I am using the IFTTT.com Maker channel to get new mail and send auto-responses. This is nice because I don't have to constantly poll gmail; IFTTT will just send a request when I get a new message. 
+The general idea is:
+I get an email --> IFTTT sends a POST request to app.py with email data --> app.py runs the regression model --> app.py sends a POST request to IFTTT with data from the model --> IFTTT sends the response.
+If you want to test this part, you'll need to set up two recipes: 
+
+* IF gmail THEN maker (if I get an email, send a request to endpoint X)
+* IF maker THEN gmail (if IFTTT gets a request to endpoint Y, send an email)
+
+I've included details about my recipes in the repo. 
+
+You'll also need to initialize your environment variables with your endpoints and keys, which IFTTT supplies. 
+
+I did not implement the draft assistant because IFTTT doesn't support it. 
 
 
