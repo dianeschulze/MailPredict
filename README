@@ -1,0 +1,45 @@
+***Introduction***
+This project is an email auto-responder that uses linear regression to predict how long it will take me to respond to each email. 
+There are 3 major parts:
+1. getmail.py, which downloads, parses, and creates features from my historical email data. 
+2. classifier.py, which builds a linear regression model to predict my response time based on the features. It also builds binary classifiers to predict whether I will respond, but these don't work very well (they pretty much always predict that I will not respond) 
+3. s
+
+
+***Downloading Mail***
+I am using impalib to download all of my email (from the Gmail All Mail folder) for the last academic year (September 1 2015-May 30 2016). Initially I was downloading all my mail since September 2012, but I found that gave me a very high variance regression model. 
+I'm getting the sender, recipients, cc's, subject, timestamp, and in-reply-to field for each message. 
+From these fields, I'm extracting:
+  * How many recipients were there (including the To and CC fields)
+  * Does the sender have a brown.edu address (or cs.brown.edu)
+  * What time of day did I receive the email (weekend/weekday, day/night/evening). I'm splitting the days into chunks based on my habits, so for example weekend days begin later than weekend nights. 
+
+I am also using imaplib to fetch all of my sent mail. I create a dictionary with key = id of the email it was a response to and value = (reply email id, reply email timestamp, reply email recipient). 
+Once I've retrieved all of my received mail, I use the sent mail dictionary keys to match replies with original emails. Then I can get the time it took me to reply by comparing the received date of the email with the dent date of the reply. 
+I store the time-to-reply in a dictionary with key = sender. After I parse all of my received mail, I find the average and median time-to-reply for each sender. 
+Then I output this dictionary so I can use it to predict reply time for new emails I receive. 
+
+Finally, for every received email, I write a row in the output file that contains its features (including classifier labels, i.e. did I respond or not; if I did respond, there are also features and labels used for the regression).
+For each row, I look up the average and median response time for the sender and include those as fields.
+
+
+***Classifier and Regression***
+First, I made several classifiers to preduct whether I would respond to an email or not based on when I received it, how many recipients and cc's there were, whether it came from a Brown address. I assumed that I will definitely not reply if I am not in the "to" or "cc" field or if the sender has a variant of "noreply" in their email address. 
+I tested decision trees, SVM, and logistic regression. All of these had testing and training accuracies around 80%. However, they also had so many false negatives that I decided it wouldn't be a good idea to run new emails through the classifier to decide if I would respond before running them through the regression model. 
+
+Second, I built a regression model to predict how long it would take me to respond to the email, given that I would probably respond. 
+
+I experimented with the following aspects of the model:
+* Use more/less training data
+* Use built-in normalization, or use my own normalization (both standard deviation and min-max normalization)
+* Use the "chunked" receipt times (weekday/weekend day/evening/night) or use minutes since midnight or use an intelligent minutes since midnight that changes the received time of any email that I get while I'm sleeping to have a received time of when I wake up
+* Use median, average, or both median and average response times to represent the sender
+* Use different regression models, including multiple linear, ridge, lasso, and elastic net
+
+I evaluated the models by comparing their training and testing accuracies, and also by re-shuffling the data and averaging their testing accuracies for 1000 iterations. 
+
+Conclusions:
+
+* Elastic net tends to slightly outperform the other models, but not by much. It seems sufficient to just use multiple linear.
+* I get much lower variance and higher r^2 when I use data from just this school year vs for all my time at Brown (notably this also excluded any summers, when I use my Brown email way less)
+* Assuming I'm only using one school year of data, using the average response time is better than using the median or using both. 
