@@ -51,9 +51,9 @@ Conclusions:
 Unfortunately, because of the way I implemented app.py, I had to remove the number of recipients feature because I couldn't get it from new emails. It's ok though because it wasn't _that_ helpful anyway.
 
 In the end, I have a multiple linear regression model with :
-training accuracy ~
-testing accuracy ~
-variance ~
+testing accuracy: 0.177
+variance: 0.178
+r^2: 0.177
 
 ***Server***
 I am using a python server hosted on heroku to handle all of the new email interactions. Instead of Mailbot, I am using the IFTTT.com Maker channel to get new mail and send auto-responses. This is nice because I don't have to constantly poll gmail; IFTTT will just send a request when I get a new message. 
