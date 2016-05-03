@@ -27,7 +27,10 @@ app.post('/email', function(req, res){
     console.log('got email')
     if (req.body){
         //console.log(req.body)
-        console.log (req.body.Subject)
+        console.log (req.body)
+
+        //extract features from the email 
+        
 
 }
     // var sender = req.body.FromAddress
