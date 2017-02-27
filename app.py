@@ -15,7 +15,7 @@ TO_IFTTT_KEY = os.getenv('TO_IFTTT_KEY')
 IFTTT_BASE_URL = os.getenv('IFTTT_BASE_URL')
 my_email_address = 'diane_schulze@brown.edu'
 # Whitelist of people to send auto-responses to
-whitelist = set(['diane_schulze@brown.edu', 'dschulze2@gmail.com', 'jeff_huang@brown.edu', 'nediyana_daskalova@brown.edu','austin.whitt@gmail.com'])
+whitelist = set(['diane_schulze@brown.edu'])
 
 # load the regression model 
 model = joblib.load('model/regression_model.pkl') 
